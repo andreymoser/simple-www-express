@@ -1,0 +1,21 @@
+{
+  "name": "simple-www-express",
+  "description": "Simple web site using express",
+  "main": "index.js",
+  "authors": [
+    "Andrey Bidinotto"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.7",
+    "trumbowyg": "2.4.1"
+  }
+}

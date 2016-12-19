@@ -1,0 +1,35 @@
+extends template/layout.pug
+
+block head-custom
+  link(href='/css/trumbowyg/trumbowyg.min.css' rel='stylesheet')
+
+block content
+  .container
+    .row
+      - var post = JSON.parse(data);
+      h2 #{post.title}
+        .pull-right
+          span.glyphicon.glyphicon-pencil(style='padding-left: 1%;')
+      hr
+      em
+        | Created on #{post.createDate.slice(0,10).replace(/\-+/g,'/')} by #{post.author}
+        span.glyphicon.glyphicon-user(style='padding-left: 1%;')
+      .pull-right
+        button.btn(onClick='remove();')
+          span.glyphicon.glyphicon-trash
+      br
+      .content
+        textarea(id=post._id)= post.content
+      button.btn.btn-primary#save(class=post._id type='button' onClick='save();') Save
+      .pull-right
+        h4
+          each tag in post.tags
+            span.label.label-default(style='margin-left: 1%; margin-right: 1%;')
+              | #{'#' + tag}
+      .content-hiden(style='display: none;')
+        textarea(class=post._id)= post.content
+        pre#data= data
+
+block scripts-custom
+  script(src='/js/trumbowyg/trumbowyg.min.js')
+  script(src='/js/post.js')

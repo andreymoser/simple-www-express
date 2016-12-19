@@ -1,0 +1,21 @@
+.container
+  .row
+    hr
+    footer#footer
+      p
+        em Copyright (c) XYZ
+#signupModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='signupModalLabel')
+  .modal-dialog(role='document')
+    .modal-content
+      .modal-header
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+        h4#signupModalLabel.modal-title Signup
+      .modal-body
+        .form-group
+          input.form-control#title(type="text" placeholder="Username")
+        .form-group
+          input.form-control#title(type="password" placeholder="Password")
+      .modal-footer
+        button.btn.btn-default#closeSignup(type='button' data-dismiss='modal') Close
+        button.btn.btn-primary#signup(type='button' onClick='signup();') Signup

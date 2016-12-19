@@ -1,0 +1,43 @@
+extends template/layout.pug
+
+block content
+  .jumbotron
+    .container
+      h1= message
+  .container
+    .row
+      .col-md-8
+        table.table.table-striped
+          thead
+            tr
+              th Title
+              th Author
+              th Created
+          tbody
+            each post in JSON.parse(posts)
+              tr
+                td
+                  a(href=post.url)= post.title
+                td= post.author
+                td= post.createDate
+    .row
+      .col-md-8
+        button.btn.btn-primary.btn(type='button' data-toggle='modal' data-target='#addPostModal')
+            span.glyphicon.glyphicon-plus
+            |  Post
+
+  #addPostModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='addPostModalLabel')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+          h4#addPostModalLabel.modal-title New Post
+        .modal-body
+          input.form-control#title(type="text" placeholder="Title")
+        .modal-footer
+          button.btn.btn-default#close(type='button' data-dismiss='modal') Close
+          button.btn.btn-primary#save(type='button' onClick='save();') Save and edit
+
+block scripts-custom
+  script(src='/js/posts.js')

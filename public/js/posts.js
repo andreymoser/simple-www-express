@@ -1,8 +1,9 @@
 $('#title').keyup(function(event) {
-  if (event.keyCode == 13) {
+  if (event.keyCode === 13) {
     $('#save').click();
   }
 });
+
 function save() {
   $.ajax('/api/posts', {
       type: 'PUT',
@@ -26,4 +27,4 @@ function save() {
         alert(text);
       }
     })
-};
+}

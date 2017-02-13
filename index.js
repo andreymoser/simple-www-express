@@ -1,8 +1,14 @@
-let logger = require('./logger');
-let express = require('express');
-let app = express();
-let port = process.env.PORT || 3000;
-let mongod = require('./modules/mongod');
+const logger = require('./logger');
+const config = require('./modules/config');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+const mongod = require('./modules/mongod');
+const mongoose = require('mongoose');
+
+//schemas definition
+require('./models/post');
+require('./models/user');
 
 //force html enter and avoid bootstrap form input issues
 app.locals.pretty = true;
@@ -30,7 +36,7 @@ app.get('*',(req, res, next) => {
   res.render('error',{ title: 'Error', message: 'Sorry, page not found.'});
 });
 
-mongod.connect((err,data) => {
+mongod.connect(config.mongod.url, mongoose, (err,data) => {
   if (err) throw err;
   console.log(`mongod: ${data}`);
   app.listen(port, () => {

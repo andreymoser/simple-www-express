@@ -1,6 +1,6 @@
 # Simple web site using node.js and express
 
-This project is a simple web site in order to demonstrate usefull features of node.js and express.
+This project is a simple web site in order to demonstrate useful features of node.js and express.
 
 ### Requirements from client XYZ
 

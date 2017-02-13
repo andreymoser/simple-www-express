@@ -1,15 +1,9 @@
 (function(){
-  const url = require('../modules/config').mongod.url;
   const exports = module.exports = {};
-
-  exports.mongoose = require('mongoose');
-  const db = exports.mongoose.connection;
-
-  //schemas definition
-  require('../models/post');
-  require('../models/user');
-
-  exports.connect = (callback) => {
+  
+  exports.connect = (url, mongoose, callback) => {
+    exports.mongoose = mongoose;
+    const db = mongoose.connection;
     db.on('error', (err) => {
       console.error(err);
       return callback(err);
@@ -17,6 +11,6 @@
     db.once('open', function() {
       return callback(null,`connected on ${url}`);
     });
-    exports.mongoose.connect(url);
+    mongoose.connect(url);
   };
 })();

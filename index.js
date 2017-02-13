@@ -1,7 +1,7 @@
 let logger = require('./logger');
 let express = require('express');
 let app = express();
-let port = 3000;
+let port = process.env.PORT || 3000;
 let mongod = require('./modules/mongod');
 
 //force html enter and avoid bootstrap form input issues

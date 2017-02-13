@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongod = require('./modules/mongod');
 const mongoose = require('mongoose');
+const path = require('path');
 
 //schemas definition
 require('./models/post');
@@ -19,11 +20,11 @@ app.set('view engine', 'pug');
 //middleware settings
 app.use('*', logger);
 
-app.use('/', express.static(__dirname + '/public'));
-app.use('/', express.static(__dirname + '/bower_components/bootstrap/dist'));
-app.use('/js', express.static(__dirname + '/bower_components/jquery/dist'));
-app.use('/css/trumbowyg', express.static(__dirname + '/bower_components/trumbowyg/dist/ui'));
-app.use('/js/trumbowyg', express.static(__dirname + '/bower_components/trumbowyg/dist'));
+app.use('/', express.static(path.join(__dirname,'/public')));
+app.use('/', express.static(path.join(__dirname,'/bower_components/bootstrap/dist')));
+app.use('/js', express.static(path.join(__dirname,'/bower_components/jquery/dist')));
+app.use('/css/trumbowyg', express.static(path.join(__dirname,'/bower_components/trumbowyg/dist/ui')));
+app.use('/js/trumbowyg', express.static(path.join(__dirname,'/bower_components/trumbowyg/dist')));
 
 //xyp_app router
 app.use('/',require('./app_router'))

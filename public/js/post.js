@@ -16,7 +16,7 @@ checkContents();
 function save() {
   post.content = $('#' + post._id).val();
   $.ajax('/api/posts', {
-      type: 'POST',
+      type: 'PUT',
       dataType: 'json',
       headers: { "Content-Type": "application/json"},
       data: JSON.stringify(post),
@@ -24,12 +24,11 @@ function save() {
         if (result && result.url ) {
           $(location).attr('href', result.url);
         } else {
-          alert('Post error - url not found');
+          console.error('Put error - url not found');
         }
       },
       error: function(xhr, text, error) {
         console.error(error);
-        alert(text);
       }
   })
 }
@@ -41,12 +40,11 @@ function remove() {
         if (result && result.message) {
           $(location).attr('href', '/posts');
         } else {
-          alert('Delete error');
+          console.error('Delete error');
         }
       },
       error: function(xhr, text, error) {
         console.error(error);
-        alert(text);
       }
   });
 }

@@ -6,7 +6,7 @@ $('#title').keyup(function(event) {
 
 function save() {
   $.ajax('/api/posts', {
-      type: 'PUT',
+      type: 'POST',
       dataType: 'json',
       headers: { "Content-Type": "application/json"},
       data: JSON.stringify({
@@ -19,12 +19,11 @@ function save() {
         if (result && result.url ) {
           $(location).attr('href', result.url);
         } else {
-          alert('Post error - url not found');
+          console.error('Post error - url not found');
         }
       },
       error: function(xhr, text, error) {
         console.error(error);
-        alert(text);
       }
     })
 }
